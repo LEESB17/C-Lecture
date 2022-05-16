@@ -1,0 +1,42 @@
+#include <iostream>
+#include <cmath>
+#include <sstream>
+using namespace std;
+
+int main()
+{
+  int n;
+  cin >> n;
+  int num[n];
+  for(int i=0;i<n;i++)
+  {
+    cin>> num[i];
+  }
+  for(int i=0;i<n;i++)
+  {
+  	std::stringstream s;
+	s << num[i];
+    int ans=num[i];
+    int re=0;
+    for(int j=0;j<s.str().length();j++)
+    {
+      int x=s.str().length()-(j+1);
+      int p =s.str().length();
+      int y=pow(10,x);
+      int m=num[i]/y;
+      num[i]=num[i]%y;
+      re=pow(m,p)+re;
+
+    }
+    if(re==ans)
+    {
+      cout<<1;
+    }
+    else
+    {
+      cout<<0;
+    }
+    cout<<"\n";
+
+  }
+}

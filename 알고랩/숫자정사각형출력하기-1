@@ -1,0 +1,72 @@
+#include <iostream>
+#include <cmath>
+#include <sstream>
+#include <string>
+using namespace std;
+
+int main()
+{
+ 	int n;
+ 	cin>>n;
+ 	int m[n];
+ 	for(int i=0;i<n;i++)
+ 	{
+ 		int a,b;
+ 		cin>>m[i];
+ 		int re[m[i]][m[i]];
+ 		if((m[i]/2)%2==1)
+ 		{
+ 			a=1;
+ 			b=0;
+		}
+		else
+		{
+			b=1;
+ 			a=0;
+		}
+		for(int h=0;h<(m[i]/2)+1;h++)
+		{
+			if(h%2==0)
+			{
+				for(int j=h;j<m[i]-h;j++)
+				{
+					for(int k=h;k<m[i]-h;k++)
+					{
+						re[j][k]=a;
+					}
+				}
+			}
+			else
+			{
+				for(int j=h;j<m[i]-h;j++)
+				{
+					for(int k=h;k<m[i]-h;k++)
+					{
+						re[j][k]=b;
+					}
+				}
+			}
+			
+			
+		}
+		if(m[i]==1)
+		{
+			cout<<0;
+		}
+		else
+		{
+			for(int j=0;j<m[i];j++)
+		{
+			for(int k=0;k<m[i];k++)
+			{
+				cout<<re[j][k];
+			}
+			cout<<"\n";
+		}
+		
+		}
+	}
+	
+
+  
+}

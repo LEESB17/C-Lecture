@@ -1,0 +1,77 @@
+#include <iostream>
+#include <cmath>
+#include <sstream>
+#include <string>
+#include <algorithm>
+#include <vector>
+
+using namespace std;
+
+vector<vector<int>> solution(vector<vector<int>> arr1, vector<vector<int>> arr2)
+{
+	vector<vector<int>> answer;
+
+	for (size_t i = 0; i < arr1.size(); i++)
+	{
+		vector<int> row;
+		for (size_t j = 0; j < arr2[0].size(); j++)
+		{
+			int row_tmp = 0;
+			for (size_t n = 0; n < arr1[i].size(); n++)
+			{
+				row_tmp += arr1[i][n] * arr2[n][j];
+			}
+			row.push_back(row_tmp);
+		}
+		answer.push_back(row);
+	}
+
+	return answer;
+}
+
+int main()
+{
+	int a;
+	cin>>a;
+	for(int p=0;p<a;p++)
+	{
+	
+	int n[3];
+	for(int k=0;k<3;k++)
+	{
+		cin>>n[k];
+	}
+	
+	vector<vector<int>> arr1(n[0],vector<int>(n[1]));
+	vector<vector<int>> arr2(n[1],vector<int>(n[2]));
+	
+	for(int k=0;k<n[0];k++)
+	{
+		for(int l=0;l<n[1];l++)
+		{
+			cin>>arr1[k][l];
+		}
+		
+	}
+	for(int k=0;k<n[1];k++)
+	{
+		for(int l=0;l<n[2];l++)
+		{
+			cin>>arr2[k][l];
+		}
+		
+	}
+
+	
+	vector<vector<int>> ans = solution(arr1, arr2);
+	
+
+	for (size_t i = 0; i < ans.size(); i++)
+	{
+		for (size_t j = 0; j < ans[0].size(); j++)
+		{
+			cout << ans[i][j] << ' ';
+		}putchar('\n');
+	}
+}
+}

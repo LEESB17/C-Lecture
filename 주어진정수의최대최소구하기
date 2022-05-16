@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+  int m;
+
+  int n;
+  cin >> m;
+  int result[m][2];
+  for(int j=0;j<m;j++)
+  {
+
+    cin >> n;
+    int num[n];
+    for(int i=0;i<n;i++)
+    {
+      cin >> num[i];
+    }
+    result[j][0]=num[0];
+    result[j][1]=num[0];
+
+    for(int i=1;i<n;i++)
+    {
+      if(result[j][0]<num[i])
+      {
+        result[j][0] = num[i];
+      }
+      if(result[j][1]>num[i])
+      {
+        result[j][1] = num[i];
+      }
+
+    }
+
+  }
+  for(int i=0;i<m;i++)
+  {
+    cout << result[i][0]<<" "<< result[i][1] <<"\n";
+  }
+
+}

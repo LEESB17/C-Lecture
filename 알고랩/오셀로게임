@@ -1,0 +1,302 @@
+#include <cstring>
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main()
+{
+    int t, c;
+    short x, y, row, col, ansy, ansx;
+    bool check;
+    cin >> t;
+
+    for (int k = 0; k < t; k++)
+    {
+        char oth[9][9];
+        fill(oth[0], oth[10], '+');
+
+        oth[4][5] = 'X';
+        oth[5][4] = 'X';
+        oth[4][4] = 'O';
+        oth[5][5] = 'O';
+        cin >> c;
+
+        short order = 0;
+        for (int i = 0; i < c; i++)
+        {
+            cin >> row >> col;
+            char now = (order) ? 'O' : 'X';
+            oth[row][col] = now;
+
+
+            x = row;
+            y = col;
+            check = false;
+            while (x >= 2 && y >= 2)
+            {
+                x--;
+                y--;
+
+                if (oth[x][y] == now)
+                {
+                    check = true;
+                    break;
+                }
+                else if (oth[x][y] == '+')
+                {
+                    break;
+                }
+                else
+                {
+                    continue;
+                } 
+            }
+            if (check)
+            {
+                for (int i = x + 1, j = y + 1; i < row; i++, j++)
+                {
+                    oth[i][j] = now;
+                }
+            }
+
+
+            x = row;
+            y = col;
+            check = false;
+            while (x >= 2 && y < 8)
+            {
+                x--;
+                y++;
+
+                if (oth[x][y] == now)
+                {
+                    check = true;
+                    break;
+                }
+                else if (oth[x][y] == '+')
+                {
+                    break;
+                }
+                else
+                {
+                    continue;
+                }
+            }
+            if (check)
+            {
+                for (int i = x + 1, j = y - 1; i < row; i++, j--)
+                {
+                    oth[i][j] = now;
+                }
+            }
+
+            x = row;
+            y = col;
+            check = false;
+            while (x < 8 && y >= 2)
+            {
+                x++;
+                y--;
+
+                if (oth[x][y] == now)
+                {
+                    check = true;
+                    break;
+                }
+                else if (oth[x][y] == '+')
+                {
+                    break;
+                }
+                else
+                {
+                    continue;
+                }
+            }
+            if (check)
+            {
+                for (int i = x - 1, j = y + 1; i > row; i--, j++)
+                {
+                    oth[i][j] = now;
+                }
+            }
+
+            x = row;
+            y = col;
+            check = false;
+            while (x < 8 && y < 8)
+            {
+                x++;
+                y++;
+
+                if (oth[x][y] == now)
+                {
+                    check = true;
+                    break;
+                }
+                else if (oth[x][y] == '+')
+                {
+                    break;
+                }
+                else
+                {
+                    continue;
+                }
+            }
+            if (check)
+            {
+                for (int i = x - 1, j = y - 1; i > row; i--, j--)
+                {
+                    oth[i][j] = now;
+                }
+            }
+
+
+            x = row;
+            y = col;
+            check = false;
+            while (x >= 2)
+            {
+                x--;
+
+                if (oth[x][y] == now)
+                {
+                    check = true;
+                    break;
+                }
+                else if (oth[x][y] == '+')
+                {
+                    break;
+                }
+                else
+                {
+                    continue;
+                }
+            }
+            if (check)
+            {
+                for (int i = x + 1; i < row; i++)
+                {
+                    oth[i][y] = now;
+                }
+            }
+
+
+            x = row;
+            y = col;
+            check = false;
+            while (x < 8)
+            {
+                x++;
+
+                if (oth[x][y] == now)
+                {
+                    check = true;
+                    break;
+                }
+                else if (oth[x][y] == '+')
+                {
+                    break;
+                }
+                else
+                {
+                    continue;
+                }
+            }
+            if (check)
+            {
+                for (int i = x - 1; i > row; i--)
+                {
+                    oth[i][y] = now;
+                }
+            }
+
+
+            x = row;
+            y = col;
+            check = false;
+            while (y >= 2)
+            {
+                y--;
+
+                if (oth[x][y] == now)
+                {
+                    check = true;
+                    break;
+                }
+                else if (oth[x][y] == '+')
+                {
+                    break;
+                }
+                else
+                {
+                    continue;
+                }
+            }
+            if (check)
+            {
+                for (int i = y + 1; i < col; i++)
+                {
+                    oth[x][i] = now;
+                }
+            }
+
+
+            x = row;
+            y = col;
+            check = false;
+            while (y < 8)
+            {
+                y++;
+
+                if (oth[x][y] == now)
+                {
+                    check = true;
+                    break;
+                }
+                else if (oth[x][y] == '+')
+                {
+                    break;
+                }
+                else
+                {
+                    continue;
+                }
+            }
+            if (check)
+            {
+                for (int i = y - 1; i > col; i--)
+                {
+                    oth[x][i] = now;
+                }
+            }
+
+            order = 1 - order;
+        }
+
+        ansy = 0;
+        ansx = 0;
+
+        for (int i = 1; i <= 8; i++)
+        {
+            for (int j = 1; j <= 8; j++)
+            {
+                if (oth[i][j] == 'X')
+                    ansx++;
+                else if (oth[i][j] == 'O')
+                    ansy++;
+            }
+        }
+
+        cout << ansx << " " << ansy << endl;
+
+        for (int i = 1; i <= 8; i++)
+        {
+            for (int j = 1; j <= 8; j++)
+            {
+                cout << oth[i][j];
+            }
+            cout << endl;
+        }
+    }
+}
